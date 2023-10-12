@@ -1,3 +1,4 @@
+# we are running springboot application on port 8085
 server:
   port: 8085
 
@@ -6,9 +7,17 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          #This line specifies the URL of the Keycloak realm that the application is using.
+          #"issuer":"http://localhost:8090/realms/demo
           issuer-uri: http://localhost:8090/realms/demo
+          #This line specifies the URL of the Keycloak JWK set.
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
+
+#public class JwtAuthConverterProperties
+#Inside the class two instance variable  resourceId, principalAttribute
+#These properties would tell the JwtAuthConverter to authenticate users for the demo_client resource
+#and to use the preferred_username claim as the user's principal.
 jwt:
   auth:
     converter:
